@@ -1,5 +1,5 @@
 // components/FeatureFilm.js
-
+import Image from 'next/image';
 export default function FeatureFilm() {
   const film = {
     title: "Inception",
@@ -13,7 +13,7 @@ export default function FeatureFilm() {
     <div className="p-6 max-w-4xl mx-auto">
       <h1 className="text-3xl font-bold mb-6">🎬 Film à la Une</h1>
       <div className="flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden">
-        <img
+        <Image
           src={film.poster_path}
           alt={film.title}
           className="w-full md:w-1/3 object-cover"

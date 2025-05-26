@@ -1,12 +1,16 @@
-import axios from "axios" //Importation de la bibliothèque axios, qui sert à faire des requêtes HTTP facilement.
+export const dynamic = 'force-dynamic';
+
+import axios from "axios";
 
 async function Personne() {
-  const res = await axios.get("http://localhost:3000/api/test"); //On utilise axios.get pour faire une requête GET vers l’URL http://localhost:3000/api/test
-  console.log(res.data);
-  const txt = JSON.stringify(res.data); //  il faut transformer notre objet data en string avec JSON.stringify avant de le mettre dans le div 
-  //Transforme l’objet JavaScript reçu (res.data) en chaîne de caractères JSON avec JSON.stringify
-return (<div>{txt}</div>)
-
+  try {
+    const res = await axios.get("http://localhost:3000/api/test");
+    const txt = JSON.stringify(res.data);
+    return <div>{txt}</div>;
+  } catch (error) {
+    console.error("Erreur de chargement:", error);
+    return <div>Erreur de chargement des données.</div>;
+  }
 }
 
-export default Personne
+export default Personne;

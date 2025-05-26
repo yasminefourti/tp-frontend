@@ -1,17 +1,19 @@
 //http://localhost:3000/movies
 //app/movies/page.js
+// app/movies/page.js
+export const dynamic = 'force-dynamic';
+
+import Image from 'next/image';
 import Navbar from "../components/Navbar";
 import FeatureFilm from "../components/FeaturedFilm";
 
 export default async function FeaturesFilm() {
-  const res = await fetch('http://localhost:3000/api/popular' );
-
+  const res = await fetch('/api/popular'); // relative path!
   const data = await res.json();
 
   return (
     <div>
       <Navbar />
-      
       <h1>Films Populaires</h1>
       <ul>
         {data.results?.map((movie) => (
@@ -19,10 +21,11 @@ export default async function FeaturesFilm() {
             <h2>{movie.title}</h2>
             <p>Note : {movie.vote_average}</p>
             {movie.poster_path && (
-              <img
+              <Image
                 src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
                 alt={movie.title}
-                style={{ width: '150px' }}
+                width={150}
+                height={225}
               />
             )}
           </li>
@@ -31,3 +34,4 @@ export default async function FeaturesFilm() {
     </div>
   );
 }
+
